@@ -34,6 +34,8 @@ export function useAuthors() {
 			return;
 		}
 
+		console.log(import.meta.env);
+
 		if (isPending.value) {
 			controller.abort();
 			controller = new AbortController();
@@ -43,7 +45,7 @@ export function useAuthors() {
 		setLoading(true);
 
 		await fetch(
-			`${import.meta.env.VITE_API_URL}/publication/suggest-mention?q=${query}`,
+			`${import.meta.env.VITE_API_URL}publication/suggest-mention?q=${query}`,
 			{
 				signal: controller.signal,
 			},

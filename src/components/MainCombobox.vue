@@ -5,6 +5,7 @@ import SuggestChip from './SuggestChip.vue';
 import BaseDropdown from './BaseDropdown.vue';
 import debounce from '@/utils/debounce';
 import generateId from '@/utils/generateId';
+import CloseSVG from '@/assets/close.svg?component';
 
 const props = defineProps({
 	modelValue: {
@@ -93,6 +94,12 @@ function isSuggestChosen(suggestInput) {
 	);
 }
 
+function clearCombobox() {
+	inputData.value = '';
+	selectedChips.value = [];
+	emits('update:modelValue', '');
+}
+
 function emitInput(e) {
 	if (props.modelModifiers.debounce) {
 		// Исключительно для запуска лоадинг-стейта. За изменение стейта инпута отвечает дебаунсер внизу
@@ -145,6 +152,13 @@ watch(inputData, () => {
 				@focus="showDropdownIfQueryStringIsExist"
 				@input="emitInput"
 			/>
+			<button
+				v-if="inputData.length || selectedChips.length"
+				class="main-combobox__field-button btn-icon"
+				@click="clearCombobox"
+			>
+				<CloseSVG width="24" height="24" />
+			</button>
 		</div>
 		<p class="main-combobox__error">
 			{{ errorResponse.errorMessage }}
@@ -161,7 +175,6 @@ watch(inputData, () => {
 					:suggest="suggest"
 					:is-disabled="isSuggestChosen(suggest.alias)"
 					:tab-index="selectedChips.length + 2"
-					@keyup.enter="addChip(suggest.alias)"
 					@choose="addChip($event)"
 				/>
 			</template>
@@ -186,6 +199,7 @@ watch(inputData, () => {
 	}
 
 	&__field {
+		position: relative;
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.5rem;
@@ -220,8 +234,16 @@ watch(inputData, () => {
 			}
 
 			&--full {
-				width: 100%;
+				flex-basis: 95%;
 			}
+		}
+
+		&-button {
+			position: absolute;
+			top: calc(50% - 0.75rem);
+			right: 0.75rem;
+			min-width: 1.5rem;
+			min-height: 1.5rem;
 		}
 
 		&:has(&-input:focus) {

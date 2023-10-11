@@ -34,7 +34,7 @@ watch(queryString, () => {
 	<MainCombobox
 		v-model.debounce="queryString"
 		label="Пользователь или компания"
-		:suggest="authors"
+		:suggests="authors"
 		:no-data="noAuthors"
 		:is-loading="isLoading"
 		:error-response="errorResponse"

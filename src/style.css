@@ -68,3 +68,12 @@ input {
 		font-weight: 400;
 	}
 }
+
+.btn-icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}

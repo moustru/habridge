@@ -20,7 +20,7 @@ const emits = defineEmits(['remove']);
 	<article class="suggest-chip">
 		<p class="suggest-chip__text text text-bold">{{ `@${chip.alias}` }}</p>
 		<button
-			class="suggest-chip__button"
+			class="btn-icon"
 			@click="emits('remove', chip.id)"
 			:tabindex="tabIndex"
 		>
@@ -42,15 +42,7 @@ const emits = defineEmits(['remove']);
 
 	&__text {
 		color: #fff;
-	}
-
-	&__button {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background-color: transparent;
-		border: none;
-		cursor: pointer;
+		user-select: none;
 	}
 
 	&__icon {

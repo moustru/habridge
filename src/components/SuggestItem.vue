@@ -33,9 +33,10 @@ function chooseSuggest() {
 <template>
 	<article
 		class="suggest-item"
-		@click="chooseSuggest"
-		:tabindex="tabIndex"
 		:class="{ 'suggest-item--disabled': isDisabled }"
+		:tabindex="isDisabled ? -1 : tabIndex"
+		@click="chooseSuggest"
+		@keyup.enter="chooseSuggest"
 	>
 		<div class="suggest-item__img">
 			<img :src="suggest.avatar || NoAvatar" alt="Suggest img" />
