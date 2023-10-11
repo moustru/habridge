@@ -1,3 +1,10 @@
+/**
+ * Дебаунс-функция
+ *
+ * @param {Function} callback Колбэк (функция, ради которой применяется дебаунсер)
+ * @param {Number} wait Время работы дебаунса
+ * @returns Исполняемая функция-обертка вокруг колбэка
+ */
 function debounce(callback, wait) {
 	let timeout;
 

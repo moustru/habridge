@@ -1,3 +1,8 @@
+/**
+ * Функция генерации ID
+ *
+ * @returns Строка с готовым ID
+ */
 function generateId() {
 	const allChars = '0123456789abcdef';
 	let id = '';
