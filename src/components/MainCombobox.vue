@@ -101,6 +101,8 @@ function clearCombobox() {
 }
 
 function emitInput(e) {
+	inputData.value = e.target.value;
+
 	if (props.modelModifiers.debounce) {
 		// Исключительно для запуска лоадинг-стейта. За изменение стейта инпута отвечает дебаунсер внизу
 		emits('inputWithoutDebounce', e.target.value);
@@ -139,7 +141,7 @@ watch(inputData, () => {
 				/>
 			</div>
 			<input
-				v-model="inputData"
+				:value="inputData"
 				:autofocus="inputAutofocus"
 				autocomplete="off"
 				id="input"

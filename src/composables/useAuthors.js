@@ -34,8 +34,6 @@ export function useAuthors() {
 			return;
 		}
 
-		console.log(import.meta.env);
-
 		if (isPending.value) {
 			controller.abort();
 			controller = new AbortController();
